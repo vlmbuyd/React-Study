@@ -15,35 +15,43 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     function App() {
-      const [minutes, setMinutes] = React.useState(0);
+      const [amount, setAmount] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false);
       const onChange = (event) => {
-        setMinutes(event.target.value); //사용자 입력값 갱신
+        setAmount(event.target.value); //사용자 입력값 갱신
       };
-      const reset = () => setMinutes(0);
+      const reset = () => setAmount(0);
+      const onFlip = () => {
+        reset();
+        setFlipped((current) => !current);
+      };
       return (
         <div>
           <h3>Super Converter</h3>
           <div>
             <label htmlFor="minutes">Minutes</label>
             <input
-              value={minutes}
+              value={flipped ? amount * 60 : amount}
               id="minutes"
               placeholder="Minutes"
               type="number"
               onChange={onChange} //사용자 입력 시
+              disabled={flipped}
             />
           </div>
           <div>
             <label htmlFor="hours">Hours</label>
             <input
-              value={Math.round(minutes / 60)}
+              value={flipped ? amount : Math.round(amount / 60)}
               id="hours"
               placeholder="Hours"
               type="number"
-              disabled
+              onChange={onChange}
+              disabled={!flipped} //flipped === false인 경우 disabled 활성화
             />
           </div>
           <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>{flipped ? "Turn back" : "Flip"}</button>
         </div>
       );
     }
