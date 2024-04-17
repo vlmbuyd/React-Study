@@ -26,7 +26,7 @@
       const onChange = (event) => setKeyword(event.target.value);
       React.useEffect(() => {
         console.log("Call the API...");
-      }, []);
+      }, []); //맨 처음 한 번만 실행
       React.useEffect(() => {
         if (keyword !== "" && keyword.length > 5) {
           console.log("I run when 'keyword' changes");
@@ -35,6 +35,9 @@
       React.useEffect(() => {
         console.log("I run when 'counter' changes");
       }, [counter]);
+      React.useEffect(() => {
+        console.log("I run when keyword & counter change");
+      }, [keyword, counter]); // 둘 중에 하나라도 변화 있을 시 코드 실행
 
       return (
         <div>
