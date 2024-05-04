@@ -13,11 +13,15 @@ function App() {
     setNum(nextNum);
   };
 
+  const handleClarClick = () => {
+    setNum(1);
+  };
+
   return (
     <div>
       <div>
         <Button onClick={handleRollClick}>던지기</Button>
-        <Button>처음부터</Button>
+        <Button onClick={handleClarClick}>처음부터</Button>
       </div>
       <Dice color="red" num={num} />
     </div>
