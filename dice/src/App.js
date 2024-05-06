@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Board from "./Board";
 import Button from "./Button";
+import "./App.css";
 
 function random(n) {
   return Math.ceil(Math.random() * n);
@@ -23,12 +24,12 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="App">
       <div>
-        <Button color="blue" onClick={handleRollClick}>
+        <Button className="App-button" color="blue" onClick={handleRollClick}>
           던지기
         </Button>
-        <Button color="red" onClick={handleClarClick}>
+        <Button className="App-button" color="red" onClick={handleClarClick}>
           처음부터
         </Button>
       </div>
