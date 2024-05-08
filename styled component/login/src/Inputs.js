@@ -5,6 +5,7 @@ const Input = styled.input`
   display: block;
   outline: none;
   padding: 8px 0;
+  margin-bottom: 16px;
   border-bottom: 2px solid ${({ error }) => (error ? `#f44336` : `#eeeeee`)};
 
   &::placeholder {

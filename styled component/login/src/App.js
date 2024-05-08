@@ -2,6 +2,8 @@ import styled from "styled-components";
 import codeitImg from "./assets/codeit.png";
 import Label from "./Label";
 import Inputs from "./Inputs";
+import Button from "./Button";
+import KaKaoButton from "./KaKaoButton";
 
 const Container = styled.div`
   display: flex;
@@ -40,6 +42,8 @@ function App() {
       <Inputs placeholder="styled@codeit.kr"></Inputs>
       <Label>비밀번호</Label>
       <Inputs placeholder="비밀번호"></Inputs>
+      <Button>로그인 하기</Button>
+      <KaKaoButton>카카오 로그인</KaKaoButton>
     </Container>
   );
 }
