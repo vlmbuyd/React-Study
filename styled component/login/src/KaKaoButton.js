@@ -23,9 +23,9 @@ const StyledButton = styled(Button)`
   }
 `;
 
-function KaKaoButton({ children }) {
+function KaKaoButton({ className, children }) {
   return (
-    <StyledButton>
+    <StyledButton className={className}>
       <Icon src={kakaoIcon} alt="kakao icon"></Icon>
       {children}
     </StyledButton>

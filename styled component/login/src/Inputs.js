@@ -12,9 +12,17 @@ const Input = styled.input`
     color: #c4c5cd;
   }
 
-  &:focus {
-    border-bottom: 2px solid #7760b4;
-  }
+  /* &:focus {
+    border-bottom: 2px solid ${({ error }) => (error ? `f44336` : `#7760b4`)};
+  } */
+
+  ${({ error }) =>
+    !error &&
+    `
+    &:focus {
+      border-bottom: 2px solid #7760b4;
+    }
+  `}
 `;
 
 function Inputs({ placeholder }) {

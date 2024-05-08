@@ -47,11 +47,13 @@ function App() {
           회원이 아니신가요? <a href="#">회원가입 하기</a>
         </Join>
       </Header>
-      <Label>이메일</Label>
-      <Inputs placeholder="styled@codeit.kr"></Inputs>
-      <Label>비밀번호</Label>
-      <Inputs placeholder="비밀번호"></Inputs>
-      <Button>로그인 하기</Button>
+      <form>
+        <Label>이메일</Label>
+        <Inputs placeholder="styled@codeit.kr"></Inputs>
+        <Label>비밀번호</Label>
+        <Inputs placeholder="비밀번호"></Inputs>
+        <Button>로그인 하기</Button>
+      </form>
       <KaKaoButton>카카오 로그인</KaKaoButton>
     </Container>
   );
