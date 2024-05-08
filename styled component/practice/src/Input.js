@@ -11,10 +11,9 @@ const Input = styled.input`
   border-radius: ${({ round }) => (round ? `9999px` : `4px`)};
   outline: none;
   padding: 16px;
-  font-size ${({ size }) => SIZES[size] ?? SIZES["medium"]}px;
+  font-size: ${({ size }) => SIZES[size] ?? SIZES["medium"]}px;
 
-
-  &:focus {  
+  &:focus {
     border-color: ${({ error }) => (error ? `#f44336` : `#7760b4`)};
   }
 `;
