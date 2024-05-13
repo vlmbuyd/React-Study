@@ -9,7 +9,7 @@ const Image = styled.img`
 
 const Description = styled.div`
   display: none;
-  padding: 20px 13px 0 13px;
+  padding: 25px 15px 0 15px;
   position: absolute;
   top: 0;
   width: 100%;
@@ -17,8 +17,14 @@ const Description = styled.div`
   background-color: black;
   opacity: 0.8;
 
+  & strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
   & p {
     font-size: 15px;
+    line-height: 1.3;
   }
 `;
 
@@ -67,7 +73,7 @@ function MovieListItem({ item }) {
         <Rate>{item.vote_average}</Rate>
       </div>
       <Description>
-        <span>{item.original_title}</span>
+        <strong>{item.original_title}</strong>
         <p>{item.overview}</p>
       </Description>
     </ItemContainer>
