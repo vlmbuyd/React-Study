@@ -43,6 +43,7 @@ const ItemContainer = styled.div`
 
 const Title = styled.span`
   margin-left: 7px;
+  font-size: 14px;
   font-weight: 300;
 `;
 
@@ -50,6 +51,7 @@ const Rate = styled.span`
   position: absolute;
   top: 390px;
   right: 10px;
+  font-size: 12px;
   font-weight: 300;
 `;
 

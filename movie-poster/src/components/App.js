@@ -1,21 +1,11 @@
 import styled from "styled-components";
-import { createGlobalStyle } from "styled-components";
 import MovieList from "./MovieList";
+import GlobalStyles from "./GlobalStyles";
 import { mockData } from "../mock";
 
-const GlobalStyle = createGlobalStyle`
-    * {
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-`;
-
 const Container = styled.div`
-  width: 80%;
-  height: 100vh;
+  width: 100%;
+  /* height: 100vh; */
   margin: 0 auto;
   background-color: #242a6b;
 `;
@@ -25,7 +15,7 @@ function App() {
 
   return (
     <Container>
-      <GlobalStyle></GlobalStyle>
+      <GlobalStyles></GlobalStyles>
       <MovieList items={mock}></MovieList>
     </Container>
   );
