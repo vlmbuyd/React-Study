@@ -37,7 +37,7 @@ const ItemContainer = styled.div`
   border-radius: 9px;
   margin: 10px 0;
   color: white;
-  background-color: #3e469e;
+  background-color: #3c386b;
 
   &:hover ${Description} {
     display: block;
@@ -48,12 +48,14 @@ const ItemContainer = styled.div`
 `;
 
 const Title = styled.span`
+  display: inline-block;
   margin-left: 7px;
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 13px;
+  font-weight: 500;
 `;
 
 const Rate = styled.span`
+  display: inline-block;
   position: absolute;
   top: 390px;
   right: 10px;

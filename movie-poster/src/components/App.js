@@ -5,9 +5,9 @@ import { mockData } from "../mock";
 
 const Container = styled.div`
   width: 100%;
-  /* height: 100vh; */
   margin: 0 auto;
-  background-color: #242a6b;
+  /* background-color: #242a6b; */
+  background-color: #1f2047;
 `;
 
 function App() {
