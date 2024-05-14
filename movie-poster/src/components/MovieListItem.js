@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Image = styled.img`
+  /* width: 100%; */
   height: 380px;
   margin-bottom: 10px;
   /* object-fit: cover;
@@ -67,7 +68,7 @@ function MovieListItem({ item }) {
   return (
     <ItemContainer>
       <Image
-        src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
+        src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
         alt={item.original_title}
       ></Image>
       <div>
