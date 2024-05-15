@@ -10,6 +10,7 @@ function App() {
   const [offset, setOffset] = useState(0);
   const [hasNext, setHasNext] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingError, setLoadingError] = useState(null);
 
   const handleNewestClick = () => setOrder("createdAt");
   const handleBestClick = () => setOrder("rating");
@@ -25,9 +26,10 @@ function App() {
     let result;
     try {
       setIsLoading(true);
+      setLoadingError(null);
       result = await getReviews(options);
     } catch (error) {
-      console.log(error);
+      setLoadingError(error);
       return;
     } finally {
       setIsLoading(false);
@@ -64,6 +66,8 @@ function App() {
           더 보기
         </button>
       )}
+      {loadingError?.message && <span>{loadingError.message}</span>} /*오류
+      메시지 출력 */
     </div>
   );
 }
