@@ -9,6 +9,7 @@ function App() {
   const [order, setOrder] = useState("createdAt");
   const [offset, setOffset] = useState(0);
   const [hasNext, setHasNext] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleNewestClick = () => setOrder("createdAt");
   const handleBestClick = () => setOrder("rating");
@@ -21,7 +22,18 @@ function App() {
   };
 
   const handleLoad = async (options) => {
-    const { reviews, paging } = await getReviews(options);
+    let result;
+    try {
+      setIsLoading(true);
+      result = await getReviews(options);
+    } catch (error) {
+      console.log(error);
+      return;
+    } finally {
+      setIsLoading(false);
+    }
+    const { paging, reviews } = result;
+
     if (options.offset === 0) {
       setItems(reviews);
     } else {
@@ -47,7 +59,11 @@ function App() {
       </div>
       <ReviewList items={sortedItems} onDelete={handleDelete}></ReviewList>
       {/* hasNext가 true일 때만 button 렌더링 */}
-      {hasNext && <button onClick={handleLoadMore}>더 보기</button>}
+      {hasNext && (
+        <button disabled={isLoading} onClick={handleLoadMore}>
+          더 보기
+        </button>
+      )}
     </div>
   );
 }

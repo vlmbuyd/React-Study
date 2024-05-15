@@ -47,7 +47,7 @@ function App() {
         <button onClick={handleCalorieClick}>칼로리순</button>
       </div>
       <FoodList items={sortedItems} onDelete={handleDelete}></FoodList>
-      {cursor && <button onClick={handleLoadMore}>불러오기</button>}
+      {cursor && <button onClick={handleLoadMore}>더 보기</button>}
     </div>
   );
 }
