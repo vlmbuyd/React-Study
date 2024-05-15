@@ -30,7 +30,6 @@ function App() {
     }
 
     setCursor(nextCursor);
-    console.log(nextCursor);
   };
 
   const handleLoadMore = () => {
