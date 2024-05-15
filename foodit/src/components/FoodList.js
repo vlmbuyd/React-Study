@@ -5,8 +5,10 @@ function formatDate(value) {
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
 }
 
-function FoodListItem({ item }) {
+function FoodListItem({ item, onDelete }) {
   const { imgUrl, title, calorie, content, createdAt } = item;
+
+  const handleDeleteClick = () => onDelete(item.id);
 
   return (
     <div className="FoodListItem">
@@ -15,7 +17,7 @@ function FoodListItem({ item }) {
       <div>{calorie}</div>
       <div>{content}</div>
       <div>{formatDate(createdAt)}</div>
-      <button>삭제</button>
+      <button onClick={handleDeleteClick}>삭제</button>
     </div>
   );
 }
