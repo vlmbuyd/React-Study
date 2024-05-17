@@ -6,6 +6,8 @@ function App() {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState("createdAt");
   const [cursor, setCursor] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [loadingError, setLoadingError] = useState(null);
 
   const handleNewestClick = () => setOrder("createdAt");
   const handleCalorieClick = () => setOrder("calorie");
@@ -18,17 +20,29 @@ function App() {
   };
 
   const handleLoad = async (options) => {
+    let result;
+    try {
+      setLoading(true);
+      setLoadingError(null);
+      result = await getFoods(options);
+    } catch (error) {
+      console.error(error);
+      setLoadingError(error);
+      return;
+    } finally {
+      setLoading(false);
+    }
+
     const {
       foods,
       paging: { nextCursor },
-    } = await getFoods(options);
+    } = result;
 
     if (!options.cursor) {
       setItems(foods);
     } else {
       setItems((currentItems) => [...currentItems, ...foods]);
     }
-
     setCursor(nextCursor);
   };
 
@@ -47,7 +61,12 @@ function App() {
         <button onClick={handleCalorieClick}>칼로리순</button>
       </div>
       <FoodList items={sortedItems} onDelete={handleDelete}></FoodList>
-      {cursor && <button onClick={handleLoadMore}>더 보기</button>}
+      {cursor && (
+        <button disabled={loading} onClick={handleLoadMore}>
+          더 보기
+        </button>
+      )}
+      {loadingError?.message && <p>{loadingError.message}</p>}
     </div>
   );
 }
