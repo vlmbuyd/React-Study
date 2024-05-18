@@ -6,6 +6,7 @@ import CourseListPage from "./pages/CourseListPage";
 import WishlistPage from "./pages/WishlistPage";
 import QuestionListPage from "./pages/QuestionListPage";
 import QuestionPage from "./pages/QuestionPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function Main() {
   return (
@@ -13,18 +14,16 @@ function Main() {
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
-
           <Route path="courses">
             <Route index element={<CourseListPage />} />
             <Route path=":courseSlug" element={<CoursePage />} />
           </Route>
-
-          <Route path="wishlist" element={<WishlistPage />} />
-
           <Route path="questions">
             <Route index element={<QuestionListPage />} />
             <Route path=":questionId" element={<QuestionPage />} />
           </Route>
+          <Route path="wishlist" element={<WishlistPage />} />
+          <Route path="*" element={<NotFoundPage />} /> /* 잘못된 경로 처리 */
         </Route>
       </Routes>
     </BrowserRouter>
