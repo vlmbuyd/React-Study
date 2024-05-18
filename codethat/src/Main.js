@@ -22,9 +22,8 @@ function Main() {
           <Route path="wishlist" element={<WishlistPage />} />
 
           <Route path="questions">
-            {" "}
             <Route index element={<QuestionListPage />} />
-            <Route path="616825" element={<QuestionPage />} />
+            <Route path=":questionId" element={<QuestionPage />} />
           </Route>
         </Route>
       </Routes>
