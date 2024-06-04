@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Post from "./Post";
-import { getList, getDetail, getPost } from "./api";
+import { getList, getDetail, getPost, getDelete } from "./api";
 
 const Blog = () => {
   const [data, setData] = useState([]);
@@ -9,7 +9,7 @@ const Blog = () => {
   const addPost = async () => {
     const newData = {
       title: "새 포스트",
-      content: "새 포스트 내용입니당.",
+      content: "새 포스트 내용.",
       author: "vlmbuyd",
     };
     const result = await getPost(newData);
@@ -18,8 +18,7 @@ const Blog = () => {
   };
 
   const deletePost = (num) => {
-    const newData = data.filter((_, index) => index !== num);
-    setData(newData);
+    getDelete(num);
   };
 
   const modifyPost = (index) => {};
@@ -33,13 +32,9 @@ const Blog = () => {
     }
   };
 
-  // const apiRequest = async () => {
-  //   const response = await getList();
-  //   console.log(response);
-  // };
-
   useEffect(() => {
     setCount(data.length);
+    postLoad();
   }, [data]);
 
   useEffect(() => {
@@ -52,7 +47,6 @@ const Blog = () => {
       <button type="button" onClick={addPost}>
         포스트 추가
       </button>
-      {/* <button onClick={apiRequest}>api 요청</button> */}
       <Post data={data} clickModify={modifyPost} clickDelete={deletePost} />
     </>
   );

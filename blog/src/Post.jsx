@@ -1,14 +1,10 @@
 const Post = ({ data, clickModify, clickDelete }) => {
-  const dt = new Date();
-  const date =
-    dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate();
-
   const handleModify = () => {
     clickModify();
   };
 
-  const handleDelete = (index) => {
-    clickDelete(index);
+  const handleDelete = (id) => {
+    clickDelete(id);
   };
   return (
     <>
@@ -21,7 +17,7 @@ const Post = ({ data, clickModify, clickDelete }) => {
             <span>{item.created_at}</span> <br />
             <span>{item.updated_at}</span> <br />
             <button onClick={() => handleModify(index)}>수정</button>
-            <button onClick={() => handleDelete(index)}>삭제</button>
+            <button onClick={() => handleDelete(item.id)}>삭제</button>
           </div>
         );
       })}

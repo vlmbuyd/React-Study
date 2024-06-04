@@ -15,13 +15,19 @@ export const getList = async () => {
 };
 
 export const getDetail = async (id) => {
-  const response = await axios.get(`${baseURL}/${id}/`);
+  const response = await axios.get(`${baseURL}/posts/${id}/`);
 
   return response.data;
 };
 
 export const getPost = async (data) => {
   const response = await axios.post(`${baseURL}/posts/`, data);
+
+  return response.data;
+};
+
+export const getDelete = async (id) => {
+  const response = await axios.delete(`${baseURL}/posts/${id}/`);
 
   return response.data;
 };
