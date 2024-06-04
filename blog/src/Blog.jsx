@@ -1,25 +1,20 @@
 import { useEffect, useState } from "react";
 import Post from "./Post";
+import { getList, getDetail, getPost } from "./api";
 
 const Blog = () => {
-  const [data, setData] = useState([
-    {
-      id: 1,
-      title: "리액트로 블로그 만들기",
-      content: "리액트로 블로그를 만들어봅시다.",
-    },
-
-    { id: 2, title: "두 번째 포스트", content: "리액트는 재밌습니다." },
-  ]);
+  const [data, setData] = useState([]);
   const [count, setCount] = useState(data.length);
 
-  const addPost = () => {
+  const addPost = async () => {
     const newData = {
-      id: data.length + 1,
-      title: "새로운 포스트 제목",
-      content: "새로운 포스트 내용",
+      title: "새 포스트",
+      content: "새 포스트 내용입니당.",
+      author: "vlmbuyd",
     };
-    setData((prev) => [...prev, newData]);
+    const result = await getPost(newData);
+
+    setData((prev) => [...prev, result]);
   };
 
   const deletePost = (num) => {
@@ -27,9 +22,29 @@ const Blog = () => {
     setData(newData);
   };
 
+  const modifyPost = (index) => {};
+
+  const postLoad = async () => {
+    try {
+      const response = await getList();
+      setData(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // const apiRequest = async () => {
+  //   const response = await getList();
+  //   console.log(response);
+  // };
+
   useEffect(() => {
     setCount(data.length);
   }, [data]);
+
+  useEffect(() => {
+    postLoad();
+  }, []);
 
   return (
     <>
@@ -37,7 +52,8 @@ const Blog = () => {
       <button type="button" onClick={addPost}>
         포스트 추가
       </button>
-      <Post data={data} clickDelete={deletePost} />
+      {/* <button onClick={apiRequest}>api 요청</button> */}
+      <Post data={data} clickModify={modifyPost} clickDelete={deletePost} />
     </>
   );
 };
