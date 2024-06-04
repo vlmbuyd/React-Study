@@ -11,8 +11,8 @@ const Post = ({ data, clickDelete }) => {
       {data.map((item, index) => {
         return (
           <div key={index}>
-            <h1>{item[0]}</h1>
-            <p>{item[1]}</p>
+            <h1>{item.title}</h1>
+            <p>{item.content}</p>
             <span>{date}</span> <br />
             <button>수정</button>
             <button onClick={() => handleDelete(index)}>삭제</button>
