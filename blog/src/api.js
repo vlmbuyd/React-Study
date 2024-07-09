@@ -1,5 +1,8 @@
 import axios from "axios";
 
+// const baseURL =
+//   "https://port-0-blogbackend-jvpb2mlof9h57p.sel5.cloudtype.app/blog";
+
 const baseURL =
   "https://port-0-api-prac-1272llx0bndkw.sel5.cloudtype.app/api/v1";
 

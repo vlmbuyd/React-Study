@@ -48,10 +48,8 @@ const Blog = () => {
       <span>총 Post 개수 : {count}</span> <br />
       <form onSubmit={addPost} action="#">
         <input placeholder="제목/내용/이름" />
+        <button type="submit">포스트 추가</button>
       </form>
-      <button type="button" onClick={addPost}>
-        포스트 추가
-      </button>
       <Post data={data} clickModify={modifyPost} clickDelete={deletePost} />
     </>
   );
