@@ -1,6 +1,13 @@
-import { useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { getPosts, uploadPost, getUserInfo } from "./api";
+
+const PAGE_LIMIT = 3;
 
 function HomePage() {
   const [content, setContent] = useState("");
@@ -8,14 +15,16 @@ function HomePage() {
 
   const queryClient = useQueryClient();
 
+  const [page, setPage] = useState(0);
   const {
     data: postsData,
     isPending,
     isError,
+    isPlaceholderData,
   } = useQuery({
-    queryKey: ["posts"],
-    queryFn: getPosts,
-    retry: 0,
+    queryKey: ["posts", page],
+    queryFn: () => getPosts(page, PAGE_LIMIT),
+    placeholderData: keepPreviousData,
   });
 
   const { data: userInfoData, isPending: isUserInfoPending } = useQuery({
@@ -87,6 +96,20 @@ function HomePage() {
             </li>
           ))}
         </ul>
+        <div>
+          <button
+            disabled={page === 0}
+            onClick={() => setPage((old) => Math.max(old - 1, 0))}
+          >
+            &lt;
+          </button>
+          <button
+            disabled={isPlaceholderData || !postsData?.hasMore}
+            onClick={() => setPage((old) => old + 1)}
+          >
+            &gt;
+          </button>
+        </div>
       </div>
     </>
   );
